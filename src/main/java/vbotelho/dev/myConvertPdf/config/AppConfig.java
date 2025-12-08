@@ -20,6 +20,9 @@ public class AppConfig {
     @Value("${app.upload.temp-dir}")
     private String tempDir;
 
+    @Value("${app.upload.max-files:100}")
+    private int maxFiles;
+
     @PostConstruct
     public void init() {
         try {
@@ -28,6 +31,7 @@ public class AppConfig {
                 Files.createDirectories(tempPath);
                 System.out.println("✅ Diretório temporário criado: " + tempPath);
             }
+            
         } catch (IOException e) {
             System.err.println("❌ Erro ao criar diretório temporário: " + e.getMessage());
         }
